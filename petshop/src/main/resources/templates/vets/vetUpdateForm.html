@@ -1,0 +1,32 @@
+<html xmlns:th="https://www.thymeleaf.org"
+	th:replace="~{fragments/layout :: layout (~{::body},'vets')}">
+
+<body>
+
+	<h2>Update Vet</h2>
+	
+	<div class="btn btn-default">
+		<a  th:text="${veterinarians.firstName + ' ' + veterinarians.lastName}" th:href="@{/vets/new}" />
+	</div>
+	<br>
+	<br>
+	<br>
+	
+	<form th:action="@{/vets/create}" th:object="${veterinarians}"
+		class="form-horizontal" method="post">
+		<div class="form-group has-feedback">
+			<input type="hidden" th:field="*{id}">
+			<input type="text" th:field="*{firstName}" placeholder="${veterinarians.firstName}">
+			<input type="text" th:field="*{lastName}" placeholder="${veterinarians.lastName}">
+			<input type="text" th:field="*{speciality}" placeholder="${veterinarians.speciality}">
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-0 col-sm-10">
+				<button class="btn btn-default" type="submit">Update Vet</button>
+			</div>
+		</div>
+	</form>
+
+
+</body>
+</html>

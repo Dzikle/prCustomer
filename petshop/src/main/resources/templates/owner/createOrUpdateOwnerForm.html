@@ -1,0 +1,24 @@
+<html xmlns:th="https://www.thymeleaf.org"
+    th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
+
+<body>
+
+  <h2>Owner</h2>
+  <form th:action="@{/owner/create}" th:object="${owner}" class="form-horizontal" method="post">
+    <div class="form-group has-feedback">
+     <input type="text" th:field="*{firstName}" placeholder="First name" > 
+       <input type="text" th:field="*{lastName}" placeholder="Last name" > 
+        <input type="text" th:field="*{phone}" placeholder="phone" > 
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button
+          
+          class="btn btn-default" type="submit">Add
+          Owner</button>
+      </div>
+    </div>
+  </form>
+ 
+</body>
+</html>

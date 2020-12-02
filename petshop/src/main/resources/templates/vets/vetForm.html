@@ -1,0 +1,47 @@
+<html xmlns:th="https://www.thymeleaf.org"
+	th:replace="~{fragments/layout :: layout (~{::body},'vets')}">
+
+<body>
+
+	<h2>Veterinarians</h2>
+	<form th:action="@{/vets/create}" th:object="${vet}"
+		class="form-horizontal" method="post">
+		<div class="form-group has-feedback">
+			<input type="text" th:field="*{firstName}" placeholder="First name">
+			<input type="text" th:field="*{lastName}" placeholder="Last name">
+			<input type="text" th:field="*{speciality}" placeholder="speciality">
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-0 col-sm-10">
+				<button class="btn btn-default" type="submit">Add Vet</button>
+			</div>
+		</div>
+	</form>
+
+	<table id="vets" class="table table-striped" th:object="${vet}">
+		<thead>
+			<tr>
+				<th style="width: 120px">Name</th>
+				<th style="width: 120px">Speciality</th>
+				<!--             <th>Pets</th> -->
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="vet : ${vets}">
+				<td><a th:href="@{/vet/update/{id}(id=${vet.id})}"
+					th:text="${vet.firstName + ' ' + vet.lastName}" /></a></td>
+				<td th:text="${vet.speciality}"></td>
+				<!--               <td><span th:each="pets : ${owner.pets}" th:text="${pets.name + ','}"/></td> -->
+				<td>
+				<div class="col-sm-offset-10 col-sm-10">
+				<a th:href="@{/vet/update/{id}(id=${vet.id})}" class="btn btn-default">Update</a>
+				<a th:href="@{/vets/delete/{id}(id=${vet.id})}" class="btn btn-default">Delete</a>
+				</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>
